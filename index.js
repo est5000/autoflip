@@ -1,31 +1,43 @@
-var popWindows = [];
+var allWindows = {};
 $(function() {
-	$("#reset").click(function() {
-		$("#index").val(1);
+	$("#working_area fieldset div button").click(function() {
+		$(this).parent().find("input[name=index]").val(1);
 	});
 
-	$("#switch").change(function() {
-		checkAndOpen();
+	$("#working_area button").click(function() {
+		check();
 	});
 });
 
-function checkAndOpen() {
-	if ($("#switch").is(':checked')) {
+function check() {
+	$("#working_area fieldset").each(function() {
+		checkField(this);
+	});
+	// window.setTimeout(checkAndOpen, 1000);
+}
+
+function checkField(field) {
+	if ($(field).find("input[name=switch]").is(':checked')) {
+		var id = $(field).attr("id");
+		var popWindows = allWindows[id];
+		if (popWindows == null) {
+			popWindows = [];
+			allWindows[id] = popWindows;
+		}
 		for ( var i = 0; i < 3; i++) {
 			var win = popWindows[i];
 			if (win == null || win.closed) {
-				var base = $("#base").val() + "/";
-				var index = $("#index").val();
-				var rest = "/" + $("#rest").val();
+				var base = $("input[name=base]").val() + "/";
+				var index = $("input[name=index]").val();
+				var rest = "/" + $("input[name=rest]").val();
 
 				popWindows[i] = open(base + index + rest);
 				index++;
-				$("#index").val(index);
+				$("input[name=index]").val(index);
 			}
 
 		}
 
-		window.setTimeout(checkAndOpen, 1000);
-	} else {
 	}
+
 }
