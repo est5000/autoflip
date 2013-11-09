@@ -1,12 +1,31 @@
+var popWindows = [];
 $(function() {
-	// alert("jQuery is OK");
+	$("#reset").click(function() {
+		$("#index").val(1);
+	});
 
-	$("#btn2").click(function() {
-		var value = ($("#i1").val());
-		$("#output").empty().append(value);
+	$("#switch").change(function() {
+		checkAndOpen();
 	});
 });
 
-function click1() {
-	alert("click1");
+function checkAndOpen() {
+	if ($("#switch").is(':checked')) {
+		for ( var i = 0; i < 3; i++) {
+			var win = popWindows[i];
+			if (win == null || win.closed) {
+				var base = $("#base").val() + "/";
+				var index = $("#index").val();
+				var rest = "/" + $("#rest").val();
+
+				thewin[i] = open(base + index + rest);
+				index = index + 1;
+				$("#index").val(index);
+			}
+
+		}
+
+		window.setTimeout(checkAndOpen, 1000);
+	} else {
+	}
 }
