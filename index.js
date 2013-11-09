@@ -5,15 +5,17 @@ $(function() {
 	});
 
 	$("#working_area button").click(function() {
-		check();
+		// check();
 	});
+
+	check();
 });
 
 function check() {
 	$("#working_area fieldset").each(function() {
 		checkField(this);
 	});
-	// window.setTimeout(checkAndOpen, 1000);
+	window.setTimeout(checkAndOpen, 1000);
 }
 
 function checkField(field) {
