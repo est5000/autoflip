@@ -18,7 +18,7 @@ function checkAndOpen() {
 				var index = $("#index").val();
 				var rest = "/" + $("#rest").val();
 
-				thewin[i] = open(base + index + rest);
+				popWindows[i] = open(base + index + rest);
 				index = index + 1;
 				$("#index").val(index);
 			}
