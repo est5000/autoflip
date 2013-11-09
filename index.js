@@ -27,13 +27,13 @@ function checkField(field) {
 		for ( var i = 0; i < 3; i++) {
 			var win = popWindows[i];
 			if (win == null || win.closed) {
-				var base = $("input[name=base]").val() + "/";
-				var index = $("input[name=index]").val();
-				var rest = "/" + $("input[name=rest]").val();
+				var base = $(field).find("input[name=base]").val() + "/";
+				var index = $(field).find("input[name=index]").val();
+				var rest = "/" + $(field).find("input[name=rest]").val();
 
 				popWindows[i] = open(base + index + rest);
 				index++;
-				$("input[name=index]").val(index);
+				$(field).find("input[name=index]").val(index);
 			}
 
 		}
